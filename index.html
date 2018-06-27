@@ -20,13 +20,12 @@
       return possiblePlays[randomNumber]
     }
     function playerPlay(){
-      var playerChoice = "";
       var possiblePlays = [
         "ROCK",
         "PAPER",
         "SCISSORS"
       ]
-      playerChoice = prompt("Rock, Paper or Scissors?: ")
+      var playerChoice = prompt("Rock, Paper or Scissors?: ")
       while (possiblePlays.indexOf(playerChoice.toUpperCase()) == -1){
         alert("That is not one of the possible moves! Check your spelling")
         playerChoice = prompt("Rock, Paper or Scissors?: ")
@@ -79,17 +78,38 @@
       var result;
 
       if (outcome == 1) {
-        result = "You win!"
+        result = "You win the round!"
       } else if (outcome == -1){
-        result = "You lose!"
+        result = "You lose the round!"
       } else {
-        result = "Tie!"
+        result = "Tied round!"
       }
 
-      return (result + " " + message)
+      return [result + " " + message, outcome]
     }
+    function game(){
+      var gameData;
+      var playerWins = 0;
+      var computerWins = 0;
+      for (i = 0; i < 5; i++){
+        gameData = playRound
+        console.log(gameData[0])
+        if (gameData[1] == 1){
+          playerWins ++;
+        } else if (gameData[1] == -1){
+          computerWins ++;
+        }
+      }
+      if (playerWins > computerWins) {
+        console.log("You've won " + playerWins " to " + computerWins + "!")
+      } else if (playerWins < computerWins){
+        console.log("You've lost " + playerWins " to " + computerWins + "!")
+      } else {
+        console.log("Tie: "playerWins " to " + computerWins + ".")
+      }
 
-    console.log(playRound(computerPlay(), playerPlay()))
+    }
+    game()
     </script>
   </body>
 
