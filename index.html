@@ -10,6 +10,86 @@
 
   <body>
     <script>
+    function computerPlay(){
+      var possiblePlays = [
+        "Rock",
+        "Paper",
+        "Scissors"
+      ]
+      var randomNumber = Math.floor(Math.random()*possiblePlays.length);
+      return possiblePlays[randomNumber]
+    }
+    function playerPlay(){
+      var playerChoice = "";
+      var possiblePlays = [
+        "ROCK",
+        "PAPER",
+        "SCISSORS"
+      ]
+      playerChoice = prompt("Rock, Paper or Scissors?: ")
+      while (possiblePlays.indexOf(playerChoice.toUpperCase()) == -1){
+        alert("That is not one of the possible moves! Check your spelling")
+        playerChoice = prompt("Rock, Paper or Scissors?: ")
+      }
+      return playerChoice;
+    }
+    function playRound (ComputerChoice, PlayerChoice) {
+      var rockVSscissors = "Rock beats Scissors"
+      var paperVSrock = "Paper beats Rock"
+      var scissorsVSpaper = "Scissors beats Paper"
+      var tie = ComputerChoice + " vs " + ComputerChoice
+      var message;
+      var outcome;
+
+      if (ComputerChoice.toUpperCase() == "ROCK"){
+        if (PlayerChoice.toUpperCase() == "SCISSORS") {
+          message = rockVSscissors
+          outcome = -1
+        } else if (PlayerChoice.toUpperCase() == "PAPER") {
+          message = paperVSrock
+          outcome = 1
+        } else {
+          message =  tie
+          outcome = 0
+        }
+      } else if (ComputerChoice.toUpperCase() == "PAPER") {
+        if (PlayerChoice.toUpperCase() == "SCISSORS") {
+           message = scissorsVSpaper
+           outcome = 1
+        } else if (PlayerChoice.toUpperCase() == "PAPER") {
+          message = tie
+          outcome = 0
+        } else {
+          message = paperVSrock
+          outcome = -1
+        }
+      } else {
+        if (PlayerChoice.toUpperCase() == "SCISSORS") {
+           message = tie
+           outcome = 0
+        } else if (PlayerChoice.toUpperCase() == "PAPER") {
+          message = scissorsVSpaper
+          outcome = -1
+        } else {
+          message = rockVSscissors
+          outcome = 1
+        }
+      }
+
+      var result;
+
+      if (outcome == 1) {
+        result = "You win!"
+      } else if (outcome == -1){
+        result = "You lose!"
+      } else {
+        result = "Tie!"
+      }
+
+      return (result + " " + message)
+    }
+
+    console.log(playRound(computerPlay(), playerPlay()))
     </script>
   </body>
 
