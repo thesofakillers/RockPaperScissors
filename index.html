@@ -92,20 +92,22 @@
       var playerWins = 0;
       var computerWins = 0;
       for (i = 0; i < 5; i++){
-        gameData = playRound
+        console.log("\nRound " + String(i+1))
+        gameData = playRound(computerPlay(), playerPlay());
         console.log(gameData[0])
         if (gameData[1] == 1){
           playerWins ++;
         } else if (gameData[1] == -1){
           computerWins ++;
         }
+        console.log("Player: " + playerWins + " - Computer: " + computerWins)
       }
       if (playerWins > computerWins) {
-        console.log("You've won " + playerWins " to " + computerWins + "!")
+        console.log("You've won " + playerWins  +" to " + computerWins + "!");
       } else if (playerWins < computerWins){
-        console.log("You've lost " + playerWins " to " + computerWins + "!")
+        console.log("You've lost " + playerWins +" to " + computerWins + "!")
       } else {
-        console.log("Tie: "playerWins " to " + computerWins + ".")
+        console.log("Tie: "+ playerWins +" to " + computerWins + ".")
       }
 
     }
